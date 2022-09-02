@@ -19,7 +19,7 @@ app.set("view engine", "ejs");
 
 dbConnect();
 
-app.use("/api/v1/users", usersRoutes);
+app.use("/api/v1/user", usersRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello From Server!");

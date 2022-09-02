@@ -9,6 +9,10 @@ module.exports.getAllUsers = (req, res, next) => {
   res.send(users.slice(0, limit));
 };
 
+module.exports.getARandomUser = (req, res, next) => {
+  res.send(users[Math.floor(Math.random() * users.length)]);
+};
+
 module.exports.saveAUser = (req, res) => {
   console.log(req.query);
   users.push(req.body);
