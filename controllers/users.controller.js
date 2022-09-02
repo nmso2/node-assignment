@@ -1,4 +1,5 @@
 const users = require("../assets/data.json");
+const fs = require("fs");
 
 module.exports.getAllUsers = (req, res, next) => {
   const { limit, page } = req.query;
@@ -14,9 +15,40 @@ module.exports.getARandomUser = (req, res, next) => {
 };
 
 module.exports.saveAUser = (req, res) => {
-  console.log(req.query);
-  users.push(req.body);
-  res.send(users);
+  const { gender, name, address, contact, photoUrl } = req.body;
+
+  if (!gender || !name || !address || !contact || !photoUrl) {
+    res.send({ message: "All required fields must be filled!" });
+    res.end();
+  } else {
+    users.push({ ...req.body, id: Math.random() });
+    fs.writeFile("./assets/data.json", JSON.stringify(users), function (err) {
+      if (err) throw err;
+      console.log("Replaced save!");
+    });
+    res.send(users);
+  }
+};
+
+module.exports.updateUser = (req, res) => {
+  const { id } = req.body;
+  // const newData = users.find((user) => user.id === Number(id));
+  // console.log(id, gender, name, address, contact, photoUrl);
+
+  const newData = users.map((obj) => {
+    if (obj.id === id) {
+      res.send({ ...obj, ...req.body });
+      return { ...obj, ...req.body };
+    }
+    return obj;
+  });
+
+  fs.writeFile("./assets/data.json", JSON.stringify(newData), function (err) {
+    if (err) throw err;
+    console.log("Replaced update!");
+  });
+  res.send({ message: "No user with this id!" });
+  res.end();
 };
 
 module.exports.getUserDetail = (req, res) => {
@@ -33,19 +65,6 @@ module.exports.getUserDetail = (req, res) => {
   //   success: false,
   //   error: "Internal server error."
   // });
-};
-
-module.exports.updateUser = (req, res) => {
-  // const newData = req.body;
-  const { id } = req.params;
-  const filter = { _id: id };
-
-  const newData = users.find((user) => user.id === Number(id));
-
-  newData.id = id;
-  newData.name = req.body.name;
-
-  res.send(newData);
 };
 
 module.exports.deleteUser = (req, res) => {

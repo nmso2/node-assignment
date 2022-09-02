@@ -30,24 +30,7 @@ router
    * @apiError (Unauthorized 401)  Unauthorized  Only authenticated users can access the data
    * @apiError (Forbidden 403)     Forbidden     Only admins can access the data
    */
-  .get(usersControllers.getAllUsers)
-
-  /**
-   * @api {post} /users save a user
-   * @apiDescription Get all the users
-   * @apiPermission admin
-   *
-   * @apiHeader {String} Authorization   User's access token
-   *
-   * @apiParam  {Number{1-}}         [page=1]     List page
-   * @apiParam  {Number{1-100}}      [limit=10]  Users per page
-   *
-   * @apiSuccess {Object[]} all the users.
-   *
-   * @apiError (Unauthorized 401)  Unauthorized  Only authenticated users can access the data
-   * @apiError (Forbidden 403)     Forbidden     Only admins can access the data
-   */
-  .post(usersControllers.saveAUser);
+  .get(usersControllers.getAllUsers);
 
 router
   .route("/random")
@@ -69,9 +52,47 @@ router
   .get(usersControllers.getARandomUser);
 
 router
-  .route("/:id")
-  .get(viewCount, limiter, usersControllers.getUserDetail)
-  .patch(usersControllers.updateUser)
-  .delete(usersControllers.deleteUser);
+  .route("/save")
+  /**
+   * @api {post} /save save a user
+   * @apiDescription Save a user
+   * @apiPermission admin
+   *
+   * @apiHeader {String} Authorization   User's access token
+   *
+   * @apiParam  {Number{1-}}         [page=1]     List page
+   * @apiParam  {Number{1-100}}      [limit=10]  Users per page
+   *
+   * @apiSuccess {Object[]} all the users.
+   *
+   * @apiError (Unauthorized 401)  Unauthorized  Only authenticated users can access the data
+   * @apiError (Forbidden 403)     Forbidden     Only admins can access the data
+   */
+  .post(usersControllers.saveAUser);
+
+router
+  .route("/update")
+  /**
+   * @api {post} /update update a user
+   * @apiDescription update a user
+   * @apiPermission admin
+   *
+   * @apiHeader {String} Authorization   User's access token
+   *
+   * @apiParam  {Number{1-}}         [page=1]     List page
+   * @apiParam  {Number{1-100}}      [limit=10]  Users per page
+   *
+   * @apiSuccess {Object[]} all the users.
+   *
+   * @apiError (Unauthorized 401)  Unauthorized  Only authenticated users can access the data
+   * @apiError (Forbidden 403)     Forbidden     Only admins can access the data
+   */
+  .patch(usersControllers.updateUser);
+
+// router
+//   .route("/:id")
+//   .get(viewCount, limiter, usersControllers.getUserDetail)
+//   .patch(usersControllers.updateUser)
+//   .delete(usersControllers.deleteUser);
 
 module.exports = router;
