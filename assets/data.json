@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "gender": "female",
+    "name": "Ms Berta Stahl",
+    "contact": "0177-0576327",
+    "address": "Stormarn, Niedersachsen, Germany",
+    "photoUrl": "https://randomuser.me/api/portraits/women/62.jpg"
+  },
+  {
+    "gender": "male",
+    "name": "Mr Dylan Williams",
+    "address": "Fountainbleu, New Brunswick, Canada",
+    "contact": "C05 K34-8250",
+    "id": 2,
+    "photoUrl": "https://randomuser.me/api/portraits/men/77.jpg"
+  },
+  {
+    "gender": "female",
+    "name": "Miss Sandra Carrera",
+    "address": "Villa Avila Camacho (La Ceiba), Baja California, Mexico",
+    "contact": "(650) 868 8811",
+    "id": 3,
+    "photoUrl": "https://randomuser.me/api/portraits/women/7.jpg"
+  },
+  {
+    "gender": "male",
+    "name": "Mr Blake Edwards",
+    "address": "Gisborne",
+    "contact": "(705)-484-7400",
+    "id": 4,
+    "photoUrl": "https://randomuser.me/api/portraits/men/29.jpg"
+  },
+  {
+    "gender": "male",
+    "name": "Mr John Cooper",
+    "address": "Palmerston North",
+    "contact": "(167)-886-1582",
+    "id": 5,
+    "photoUrl": "https://randomuser.me/api/portraits/men/27.jpg"
+  },
+  {
+    "gender": "male",
+    "name": "Monsieur Theo Gaillard",
+    "address": "Gunzgen",
+    "contact": "077 718 47 44",
+    "id": 6,
+    "photoUrl": "https://randomuser.me/api/portraits/men/52.jpg"
+  },
+  {
+    "gender": "male",
+    "name": "Mr Gregorio Duran",
+    "address": "Orihuela",
+    "contact": "627-371-339",
+    "id": 7,
+    "photoUrl": "https://randomuser.me/api/portraits/men/69.jpg"
+  },
+  {
+    "gender": "female",
+    "name": "Miss Letitia Sutton",
+    "address": "Green Bay",
+    "contact": "(274) 868-9563",
+    "id": 8,
+    "photoUrl": "https://randomuser.me/api/portraits/women/59.jpg"
+  },
+  {
+    "gender": "male",
+    "name": "Mr Lonnie Williams",
+    "address": "Tullamore",
+    "contact": "081-395-3820",
+    "id": 9,
+    "photoUrl": "https://randomuser.me/api/portraits/men/68.jpg"
+  },
+  {
+    "gender": "female",
+    "name": "Ms Clara Sørensen",
+    "address": "Silkeboeg",
+    "contact": "36865566",
+    "id": 10,
+    "photoUrl": "https://randomuser.me/api/portraits/women/7.jpg"
+  }
+]
