@@ -31,47 +31,63 @@ module.exports.saveAUser = (req, res) => {
 };
 
 module.exports.updateUser = (req, res) => {
-  const { id } = req.body;
+  const { id, gender, name, address, contact, photoUrl } = req.body;
   // const newData = users.find((user) => user.id === Number(id));
   // console.log(id, gender, name, address, contact, photoUrl);
+  let newData, isFound;
 
-  const newData = users.map((obj) => {
-    if (obj.id === id) {
-      res.send({ ...obj, ...req.body });
-      return { ...obj, ...req.body };
-    }
-    return obj;
-  });
+  if (
+    gender === "" ||
+    name === "" ||
+    address === "" ||
+    contact === "" ||
+    photoUrl === ""
+  ) {
+    res.send({ message: "All required fields must be filled!" });
+    res.end();
+  } else {
+    newData = users.map((obj) => {
+      if (obj.id === Number(id)) {
+        isFound = true;
+        res.send({ ...obj, ...req.body });
+        res.end();
+        return { ...obj, ...req.body };
+      }
+      return obj;
+    });
+  }
 
   fs.writeFile("./assets/data.json", JSON.stringify(newData), function (err) {
     if (err) throw err;
     console.log("Replaced update!");
   });
-  res.send({ message: "No user with this id!" });
-  res.end();
+  if (!isFound) {
+    res.send({ message: "No user with this id!" });
+    res.end();
+  }
 };
 
-module.exports.getUserDetail = (req, res) => {
-  const { id } = req.params;
-  console.log(id);
-  // const filter = {_id: id};
-  const foundUser = users.find((user) => user.id === Number(id));
-  res.status(200).send({
-    success: true,
-    messages: "Success",
-    data: foundUser,
-  });
-  // res.status(500).send({
-  //   success: false,
-  //   error: "Internal server error."
-  // });
-};
+// module.exports.getUserDetail = (req, res) => {
+//   const { id } = req.params;
+//   console.log(id);
+//   // const filter = {_id: id};
+//   const foundUser = users.find((user) => user.id === Number(id));
+//   res.status(200).send({
+//     success: true,
+//     messages: "Success",
+//     data: foundUser,
+//   });
+//   // res.status(500).send({
+//   //   success: false,
+//   //   error: "Internal server error."
+//   // });
+// };
 
 module.exports.deleteUser = (req, res) => {
-  const { id } = req.params;
-  const filter = { _id: id };
+  // const { id } = req.params;
+  // const filter = { _id: id };
+  const { id } = req.body;
 
   users = users.filter((user) => user.id !== Number(id));
-
   res.send(users);
 };
