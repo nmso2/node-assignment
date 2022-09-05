@@ -86,8 +86,37 @@ module.exports.updateUser = (req, res) => {
 module.exports.deleteUser = (req, res) => {
   // const { id } = req.params;
   // const filter = { _id: id };
+  let newData, isFound;
   const { id } = req.body;
 
-  users = users.filter((user) => user.id !== Number(id));
-  res.send(users);
+  // newData = users.map((obj) => {
+  //   if (obj.id !== Number(id)) {
+  //     console.log(obj);
+  //     return obj;
+  //   } else {
+  //     isFound = true;
+  //     return;
+  //   }
+  //   // return obj;
+  // });
+  // if (!isFound) {
+  //   res.send({ message: "No user with this id!" });
+  //   res.end();
+  // }
+  // console.log(newData);
+  // console.log(id);
+
+  newData = users.filter((user) => user.id !== Number(id));
+  const foundUser = users.find((user) => user.id === Number(id));
+
+  fs.writeFile("./assets/data.json", JSON.stringify(newData), function (err) {
+    if (err) throw err;
+    console.log("Replaced update!");
+  });
+  if (!foundUser) {
+    res.send({ message: "No user with this id!" });
+    res.end();
+  } else {
+    res.send(newData);
+  }
 };

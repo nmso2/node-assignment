@@ -89,6 +89,25 @@ router
    */
   .patch(usersControllers.updateUser);
 
+router
+  .route("/delete")
+  /**
+   * @api {post} /delete delete a user
+   * @apiDescription delete a user
+   * @apiPermission admin
+   *
+   * @apiHeader {String} Authorization   User's access token
+   *
+   * @apiParam  {Number{1-}}         [page=1]     List page
+   * @apiParam  {Number{1-100}}      [limit=10]  Users per page
+   *
+   * @apiSuccess {Object[]} all the users.
+   *
+   * @apiError (Unauthorized 401)  Unauthorized  Only authenticated users can access the data
+   * @apiError (Forbidden 403)     Forbidden     Only admins can access the data
+   */
+  .delete(usersControllers.deleteUser);
+
 // router
 //   .route("/:id")
 //   .get(viewCount, limiter, usersControllers.getUserDetail)
